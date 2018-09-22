@@ -11,9 +11,5 @@
         public override string ToString() {
             return  linha + "," + coluna;
         }
-
-        public void toPosicaoXadrez() {
-
-        }
     }
 }
