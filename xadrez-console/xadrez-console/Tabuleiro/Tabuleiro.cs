@@ -1,6 +1,4 @@
-﻿using tabuleiro;
-
-namespace tabuleiro {
+﻿namespace tabuleiro {
     class Tabuleiro {
         public int linhas { get; set; }
         public int colunas { get; set; }
@@ -17,9 +15,34 @@ namespace tabuleiro {
             return pecas[linha, coluna];
         }
 
-        public void ColocarPeca(Peca p, Posicao pos) {
-            pecas[pos.linha, pos.coluna] = p;
-            p.posicao = pos; 
+        public Peca Peca (Posicao pos) {
+            return pecas[pos.linha, pos.coluna];
+        }
+
+        public bool posicaoValida(Posicao pos) {
+            if (pos.linha < 0 || pos.linha >= this.linhas || pos.coluna < 0 || pos.coluna >= this.colunas) {
+                return false;
             }
+            return true;
+        }
+
+        public void ValidarPosicao(Posicao Pos) {
+            if (!posicaoValida(Pos)) {
+                throw new TabuleiroException("Posição inválida.");
+             } 
+        }
+
+        public bool existePeca(Posicao pos) {
+            ValidarPosicao(pos);
+            return Peca(pos) != null;
+        }
+
+        public void ColocarPeca(Peca p, Posicao pos) {
+            if (existePeca(pos)) {
+                throw new TabuleiroException("Existe uma peça nessa posição");
+            }
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos;
+        }
     }
 }
