@@ -1,4 +1,6 @@
-﻿namespace tabuleiro {
+﻿using tabuleiro;
+
+namespace tabuleiro {
     class Tabuleiro {
         public int linhas { get; set; }
         public int colunas { get; set; }
@@ -14,5 +16,10 @@
         public Peca getPeca(int linha, int coluna) {
             return pecas[linha, coluna];
         }
+
+        public void ColocarPeca(Peca p, Posicao pos) {
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos; 
+            }
     }
 }
