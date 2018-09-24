@@ -10,7 +10,7 @@ namespace xadrez_console {
 
                 tab.ColocarPeca(new Torre(tab, Cor.Preto), new PosicaoXadrez('a', 8).ToPosicao());
                 tab.ColocarPeca(new Torre(tab, Cor.Preto), new PosicaoXadrez('c', 4).ToPosicao());
-                tab.ColocarPeca(new Rei(tab, Cor.Preto), new PosicaoXadrez('b', 5).ToPosicao());
+                tab.ColocarPeca(new Rei(tab, Cor.Branco), new PosicaoXadrez('b', 5).ToPosicao());
 
                 Tela.imprimirTabuleiro(tab);
             }
