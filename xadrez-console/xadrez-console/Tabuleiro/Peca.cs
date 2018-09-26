@@ -21,5 +21,21 @@
         }
 
         public abstract bool[,] MovimentosPossiveis();
+
+        public bool ExisteMovimentosPossiveis() {
+            bool[,] mat = MovimentosPossiveis();
+            for (int l=0; l < tabuleiro.linhas; l++) {
+                for (int c = 0; c < tabuleiro.colunas; c++) {
+                    if (mat[l,c]) {
+                        return true;
+                    }   
+                }
+            }
+            return false;
+        }
+
+        public bool podeMoverPara(Posicao pos) {
+            return MovimentosPossiveis()[pos.linha, pos.coluna];
+        }
     }
 }

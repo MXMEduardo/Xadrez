@@ -9,8 +9,8 @@ namespace Xadrez {
     class PartidadeXadrez {
 
         public Tabuleiro tab { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool Terminada { get; private set; }
 
         public PartidadeXadrez() {
@@ -33,6 +33,41 @@ namespace Xadrez {
             p.IncrementarQtdMovimentos();
             Peca PecaCapturada = tab.RetirarPeca(PosicaoDestino);
             tab.ColocarPeca(p, PosicaoDestino);
+        }
+
+        public void realizaJogada(Posicao PosicaoOrigem, Posicao PosicaoDestino) {
+            executaMovimento(PosicaoOrigem, PosicaoDestino);
+            turno++;
+            mudaJodador();
+        }
+
+        private void mudaJodador() {
+            if (jogadorAtual == Cor.Branco) {
+                jogadorAtual = Cor.Preto;
+            }
+            else {
+                jogadorAtual = Cor.Branco;
+            }
+        }
+
+        public void ValidaPosicaodeOrigem(Posicao pos) {
+             if (tab.Peca(pos) == null) {
+                throw new TabuleiroException("Não existe peça nessa posição");
+            }
+
+            if (tab.Peca(pos).cor != jogadorAtual) {
+                throw new TabuleiroException("A peça selecionada é do jogador "+ jogadorAtual);
+            }
+
+            if (!tab.Peca(pos).ExisteMovimentosPossiveis()) {
+                throw new TabuleiroException("Não existem movimentos possíveis para essa peça");
+            }
+        }
+
+        public void ValidaPosicaodeDestino(Posicao posOrigem, Posicao posDestino) {
+            if (!tab.Peca(posOrigem).podeMoverPara(posDestino)) {
+                throw new TabuleiroException("Posição de destino inválida");
+            }
         }
     }
 }

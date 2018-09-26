@@ -61,8 +61,6 @@ namespace xadrez_console {
         }
 
         public static PosicaoXadrez LerPosicaoXadrez() {
-            Console.WriteLine();
-            Console.Write("Posição : ");
             string s = Console.ReadLine();
 
             char coluna = s[0];
