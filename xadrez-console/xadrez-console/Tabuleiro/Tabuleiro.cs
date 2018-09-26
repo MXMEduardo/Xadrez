@@ -44,5 +44,20 @@
             pecas[pos.linha, pos.coluna] = p;
             p.posicao = pos;
         }
+
+        public Peca RetirarPeca(Posicao pos) {
+            //Peca(pos).posicao = null;
+            //pecas[pos.linha, pos.coluna] = null;
+            //return Peca(pos);
+                        if (Peca(pos) == null) {
+                            return null;
+                        } else {
+                            Peca aux = Peca(pos);
+                            aux.posicao = null;
+                            pecas[pos.linha, pos.coluna] = null;
+                            return aux;
+                        }
+            
+        }
     }
 }
