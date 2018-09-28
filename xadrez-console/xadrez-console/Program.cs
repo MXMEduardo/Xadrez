@@ -11,11 +11,8 @@ namespace xadrez_console {
                 while (!Partida.Terminada) {
                     try {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(Partida.tab);
-                        Console.WriteLine("Turno :" + Partida.turno);
-                        Console.WriteLine("Aguardando a jogada do jogador :" + Partida.jogadorAtual);
+                        Tela.imprimirPartida(Partida);
 
-                        Console.WriteLine();
                         Console.Write("Digite a posição de origem :");
                         Posicao PosOrigem = Tela.LerPosicaoXadrez().ToPosicao();
                         Partida.ValidaPosicaodeOrigem(PosOrigem);
@@ -29,7 +26,6 @@ namespace xadrez_console {
                         Posicao PosDestino = Tela.LerPosicaoXadrez().ToPosicao();
 
                         Partida.ValidaPosicaodeDestino(PosOrigem, PosDestino);
-
                         Partida.realizaJogada(PosOrigem, PosDestino);
                     }
                     catch (TabuleiroException e) {
